@@ -1,0 +1,16 @@
+{% extends "News/base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+    <div class="container">
+        <h1>Новый пост</h1>
+        <form method="POST" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

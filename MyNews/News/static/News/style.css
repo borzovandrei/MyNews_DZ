@@ -1,0 +1,25 @@
+.main-content {
+    margin-top: 80px;
+}
+
+h4 {
+    margin-top: 50px;
+}
+
+.right-item{
+    margin-left: 500px !important;
+}
+
+
+img{
+
+    max-height: 300px;
+}
+
+.navbar-brand>img {
+    height: 120%;
+    margin-top: -12px;"
+    padding: 10px;
+    width: auto;
+}
+

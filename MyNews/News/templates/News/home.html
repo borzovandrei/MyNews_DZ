@@ -1,0 +1,16 @@
+{% extends 'News/base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+    <h1>Последние новости</h1>
+
+    {% for article in articles|dictsortreversed:"created_at" %}
+        <h4><a href="{% url 'article' article.id %}">{{ article.title }}</a></h4>
+        <pre>{{ article.get_short_text }}</pre>
+    {% endfor %}
+ <p class="pull-right">&copy; ИУ5-54 Борзов Андрей, 2016</p>
+{% endblock %}

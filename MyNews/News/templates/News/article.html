@@ -1,0 +1,50 @@
+{% extends 'News/base.html' %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{
+
+
+{% block content %}
+    <div class="row">
+        <div class="thumbnail">
+            <h1> {{ article.title }}</h1> <h3>{{ article.created_at|date:"F j, Y, g:i a" }}</h3><h3>{{ article.User }}</h3>
+            <img src="{{ article.image.url }}" class="img-rounded" >
+            <pre>{{ article.text }}</pre>
+
+            <ul class="list-unstyled">
+                {% for comment in article.comments.all %}
+                   <h4> <li><span class="label label-info">{{ comment.created_at|date:"H:i:s, m.d.y" }}</span><h1 class="label label-success">{{ comment.user.username }}</h1> {{ comment.text }}</li></h4>
+                {% endfor %}
+            </ul>
+
+            <form method="POST" class="like-form"
+                  action="{% url 'like' post_id=article.id %}">
+                {% csrf_token %}
+                {% if liked %}
+                    <input type="hidden" name="delete" value="True">
+                {% endif %}
+                <button type="submit"
+                        class="btn {% if liked %}btn-danger{% else %}btn-success{% endif %}">
+                    <span class="glyphicon glyphicon-heart"></span> {{ article.likes_count }}
+                </button>
+            </form>
+
+            <form id="comment" class="form-inline comment-form" method="POST"
+                  action="{% url 'add_comment' post_id=article.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="comment"
+                           placeholder="Комментарий" style="width: 460px" required="required">
+                </div>
+                <button type="submit" class="btn btn-default">Отправить</button>
+            </form>
+            </p>
+        </div>
+    </div>
+    </div>
+
+
+{% endblock %}

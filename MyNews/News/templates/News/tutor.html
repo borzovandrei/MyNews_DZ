@@ -1,0 +1,26 @@
+{% extends 'News/layout.html' %}
+
+{% block title %}
+    Teg {{ tutor.lastname }} {{ tutor.fistname }} {{ tutor.middlename }}
+{% endblock %}
+
+{% block title_visible %}
+    Teg {{ tutor.lastname }} {{ tutor.firstname }} {{ tutor.middlename }}
+{% endblock %}
+
+{% block body %}
+    Тема {{ tutor.lastname }} {{ tutor.firstname }} {{ tutor.middlename }}
+    <br/>
+    {{ tutor.birthday }}
+    {{ tutor.sex }}
+
+    <br/>
+    <br/>
+
+    Courses:
+    <ul>
+        {% for c in courses %}
+            <li>{{ c.name }} ({{ c.full_name }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

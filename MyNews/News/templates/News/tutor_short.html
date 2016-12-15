@@ -1,0 +1,4 @@
+{% with id=tutor.id %}
+<h2><a href="{% url 'tutor' id=id %}">{{ tutor.lastname }}</a></h2>
+<p>{{ tutor.lastname }} {{ tutor.firstname }} {{ tutor.middlename }}</p>
+{%  endwith %}

@@ -1,0 +1,38 @@
+{% extends 'News/layout.html' %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block title_visible %}
+    {% if request.user.is_authenticated %}
+        Подписки, которые имеет {{ request.user.last_name }}
+    {% else %}
+        Выполните вход или регистрацию
+    {% endif %}
+{% endblock %}
+
+
+{% block body %}
+     {% if request.user.is_authenticated %}
+         <h2>Избранные подписки:</h2>
+
+     {% else %}
+        {% for t in tutors %}
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="row">
+            {% endif %}
+        <div class="col-md-6">
+            {% include 'News/tutor_short.html' with tutor=t %}
+        </div>
+        {% if forloop.counter|divisibleby:2 or forloop.last %}
+            </div>
+        {% endif %}
+
+        {% empty %}
+            The list is empty.
+        {% endfor %}
+     {% endif %}
+{% endblock %}%}
+
+

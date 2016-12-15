@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/my.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+           <a class="navbar-brand" href="{% url 'home' %}">Новости</a>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">{% block title_visible %}Hello, world!{% endblock %}</h1>
+    </div>
+    <p class="container">
+        {% if request.user.is_authenticated %}
+            Добро пожаловать, {{ request.user.last_name }} {{ request.user.first_name }}. Если вы хотите выйти, то можете  <a href="{% url 'logout' %}?continue={{ request.path }}">ВЫЙТИ.</a>
+        {% else %}
+            <a href="{% url 'signin' %}?continue={{ request.path }}">Вход</a> или
+            <a href="{% url 'signup' %}?continue={{ request.path }}">Регистрация</a>
+        {% endif %}
+    </p>
+</div>
+
+<div class="container">
+    {% block body %}{% endblock %}
+
+    <hr>
+
+    <footer>
+        <p>&copy; BMSTU 2016</p>
+    </footer>
+</div>
+
+<script src="{% static 'js/jquery-3.1.1.slim.min.js' %}"></script>
+<script src="{% static 'js/tether.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

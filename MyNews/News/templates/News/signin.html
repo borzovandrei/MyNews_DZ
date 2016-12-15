@@ -1,0 +1,43 @@
+{% extends 'News/layout.html' %}
+
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block title_visible %}
+    Авторизация
+{% endblock %}
+
+{% block body %}
+    <div class="clearfix">
+        <div class="signin-form-error">
+            {% for e in form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    {{ e }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="signin-form clearfix">
+            <form class="form-horizontal" method="post" action="">
+                {% csrf_token %}
+                <div class="form-group clearfix">
+                    <label for="login" class="col-sm-2 control-label">{{ form.login.label }}</label>
+                    <div class="col-sm-5"> {{ form.login }} </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label for="password" class="col-sm-2 control-label">{{ form.password.label }}</label>
+                    <div class="col-sm-5"> {{ form.password }} </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-2">
+                        <button type="submit" class="btn btn-primary">Вход</button>
+                    </div>
+                    <div class="col-sm-5">
+                        <a href="{% url 'signup' %}" class="btn btn-default" style="float: right">Регистрация</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
